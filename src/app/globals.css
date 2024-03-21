@@ -1,8 +1,40 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;500;700&family=Roboto:wght@400;500;700&family=Tilt+Prism&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+ 
+html, body{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
 
-:root {
+.menus{
+  opacity: 0;
+  visibility: hidden;
+  transition: all .3s ease-in-out;
+}
+
+.menus.openMobile{
+  opacity: 1;
+  visibility: visible;
+  
+}
+
+.hamburger.showMobile .line-1{
+  transform: rotate(45deg) translate(5px,5px) ;
+}
+
+.hamburger.showMobile .line-2{
+  /* opacity: 0; */
+  visibility: hidden;
+}
+.hamburger.showMobile .line-3{
+  transform: rotate(-45deg) translate(5px,-5px);
+  
+}
+
+/* :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
@@ -30,4 +62,4 @@ body {
   .text-balance {
     text-wrap: balance;
   }
-}
+} */
