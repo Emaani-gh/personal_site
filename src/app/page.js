@@ -7,7 +7,12 @@ import { AiFillLinkedin, AiFillInstagram, AiFillGithub } from "react-icons/ai";
 import Image from "next/image";
 import Seidu from "/public/seidu.png";
 import websiteIcon from "/public/web-icon.png";
-import webApp from "/public/web-icon.png";
+import webApp from "/public/web-App.png";
+import blog from "/public/blog.png";
+import noteApp from "/public/noteApp.png";
+import weatherApp from "/public/weatherApp.png";
+import web1 from "/public/web1.png";
+import ecommerceApp from "/public/ecommerceApp.png";
 
 export default function Home() {
   const [openMenu, setOpenmenu] = useState(false);
@@ -100,14 +105,14 @@ export default function Home() {
           </div>
         </div>
       </nav>
-      {/* ==================================END OF NAV======================================= */}
+      {/* ==================================END OF NAV=======================================-=============================================================== */}
 
       {/* ==================================HERO SECTION======================================= */}
 
-      <section id="hero" className=" mt-16">
-        <div className="md:flex  justify-between gap-4 max-w-6xl mx-auto md:shadow-md md:p-8">
-          <div className="flex flex-col items-center md:items-start ">
-            <h2 className="text-teal-600 text-4xl font-bold py-2 text-center">
+      <section id="hero" className=" h-[calc(100vh-80px)] flex py-20">
+        <div className="md:flex w-full justify-around items-center gap-4 mx-auto px-4 md:mx-0 md:shadow-md rounded-lg">
+          <div className="flex flex-col items-center md:items-start md:w-1/2 ">
+            <h2 className="text-teal-600 text-4xl font-bold py-2 text-center md:text-left">
               Seidu Abdul Salam
             </h2>
             <h4 className=" py-2 text-gray-500 font-semibold text-xl">
@@ -130,61 +135,90 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="relative flex w-72 h-72 p-4 rounded-full bg-gradient-to-b from-teal-500 mt-16 overflow-hidden mx-auto md:mt-0 ">
+          <div className="relative flex w-80 h-80  rounded-full bg-gradient-to-b from-teal-500 mt-16 overflow-hidden mx-auto md:mx-0 md:mt-0 ">
             <Image src={Seidu} layout="fill" objectFit="cover" />
           </div>
         </div>
       </section>
 
       {/* =========================SECTION SERVICES========================= */}
-      <section id="service" className="my-24">
-        <h2 className="py-8 text-2xl text-gray-600 font-medium text-center">
-          What I Do
-        </h2>
-        <div className="cards">
-          <div className="flex flex-col items-center shadow-md p-8 rounded-lg mb-10">
-            <Image src={websiteIcon} className="py-6" />
-            <h3 className="text-2xl text-gray-600 font-medium py-4">
-              Frontend Development
-            </h3>
-            <p className="text-gray-600 text-lg font-medium py-4">
-              I build responsive and interactive websites using modern
-              technologies
-            </p>
-            <h4 className="text-lg text-teal-500 font-bold py-2">
-              Skills & Technologies
-            </h4>
-            <ul className="text-center">
-              <li className=" text-gray-700 font-medium py-1">HTML</li>
-              <li className=" text-gray-700 font-medium py-1">
-                CSS, Tailwind, Bootstrap
-              </li>
-              <li className=" text-gray-700 font-medium py-1">JavaScript</li>
-              <li className=" text-gray-700 font-medium py-1">React</li>
-            </ul>
-          </div>
+      <section id="service" className="min-h-screen py-20 flex items-cente">
+        <div>
+          <h2 className="py-8 mb-6 text-2xl text-gray-600 font-medium text-center underline underline-offset-8 decoration-teal-500  ">
+            What I Do
+          </h2>
+          <div className="cards lg:flex gap-10">
+            <div className=" flex-1 flex flex-col items-center shadow-md p-8 rounded-lg mb-16 ">
+              <Image src={websiteIcon} className="py-6" />
+              <h3 className="text-2xl text-gray-600 font-medium py-4 text-center">
+                Frontend Development
+              </h3>
+              <p className="text-gray-600 text-lg font-medium py-4 text-center">
+                I build responsive and interactive frontend Websites and Apps
+                using modern technologies
+              </p>
+              <h4 className="text-lg text-teal-500 font-bold py-2 text-center">
+                Skills & Technologies
+              </h4>
+              <ul className="text-center">
+                <li className=" text-gray-700 font-medium py-1">HTML</li>
+                <li className=" text-gray-700 font-medium py-1">
+                  CSS, Tailwind, Bootstrap
+                </li>
+                <li className=" text-gray-700 font-medium py-1">JavaScript</li>
+                <li className=" text-gray-700 font-medium py-1">React</li>
+              </ul>
+            </div>
 
-          {/* <div className="flex flex-col items-center shadow-md p-8 rounded-lg ">
-            <Image src={websiteIcon} className="py-6" />
-            <h3 className="text-2xl text-gray-600 font-medium py-4">
-              Frontend Development
-            </h3>
-            <p className="text-gray-600 text-lg font-medium py-4">
-              I build responsive and interactive websites using modern
-              technologies
-            </p>
-            <h4 className="text-lg text-teal-500 font-bold py-2">
-              Skills & Technologies
-            </h4>
-            <ul className="text-center">
-              <li className=" text-gray-700 font-medium py-1">HTML</li>
-              <li className=" text-gray-700 font-medium py-1">
-                CSS, Tailwind, Bootstrap
-              </li>
-              <li className=" text-gray-700 font-medium py-1">JavaScript</li>
-              <li className=" text-gray-700 font-medium py-1">React</li>
-            </ul>
-          </div> */}
+            <div className=" flex-1 flex flex-col items-center shadow-md p-8 rounded-lg mb-16 bg-white">
+              <Image src={websiteIcon} className="py-6" />
+              <h3 className="text-2xl text-gray-600 font-medium py-4 text-center">
+                Design
+              </h3>
+              <p className="text-gray-600 text-lg font-medium py-4 text-center">
+                I build responsive and interactive Designs
+              </p>
+              <h4 className="text-lg text-teal-500 font-bold py-2 text-center">
+                Skills & Technologies
+              </h4>
+              <ul className="text-center">
+                <li className=" text-gray-700 font-medium py-1">Figma</li>
+                <li className=" text-gray-700 font-medium py-1">
+                  Adobe Illustrator
+                </li>
+              </ul>
+            </div>
+
+            <div className=" flex-1 flex flex-col items-center shadow-md p-8 rounded-lg mb-16 bg-white">
+              <Image src={webApp} className="py-6" />
+              <h3 className="text-2xl text-gray-600 font-medium py-4 text-center">
+                Backend Development
+              </h3>
+              <p className="text-gray-600 text-lg font-medium py-4 text-center">
+                I build optimized backend applications using modern technologies
+              </p>
+              <h4 className="text-lg text-teal-500 font-bold py-2 text-center">
+                Skills & Technologies
+              </h4>
+              <ul className="text-center">
+                <li className=" text-gray-700 font-medium py-1">
+                  Nodejs,Express,Nest js
+                </li>
+                <li className=" text-gray-700 font-medium py-1">Amazon S3</li>
+                <li className=" text-gray-700 font-medium py-1">
+                  MySQL,MongoDB
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+      {/* ---------------------------------------------------PROJECTS SECTION============================================================================*/}
+      <section id="portfolio" className="min-h-screen py-20 ">
+        <div>
+          <h2 className="py-8 mb-6 text-2xl text-gray-600 font-medium text-center underline underline-offset-8 decoration-teal-500  ">
+            Projects
+          </h2>
         </div>
       </section>
     </main>
