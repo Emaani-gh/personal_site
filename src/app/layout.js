@@ -10,8 +10,29 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
+    // <html lang="en">
+    //   <body className={inter.className}>{children}</body>
+    // </html>
+
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <head>
+        {/* 👇 This script runs before React mounts */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function() {
+                try {
+                  const mode = JSON.parse(localStorage.getItem('darkMode'));
+                  if (mode) {
+                    document.documentElement.classList.add('dark');
+                  }
+                } catch (e) {}
+              })();
+            `,
+          }}
+        />
+      </head>
+      <body>{children}</body>
     </html>
   );
 }

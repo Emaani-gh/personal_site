@@ -1,69 +1,72 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;500;700&family=Roboto:wght@400;500;700&family=Tilt+Prism&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;500;700&family=Roboto:wght@400;500;700&family=Tilt+Prism&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
- 
-html, body{
+
+html,
+body {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
 }
 
-.menus{
+.section-border {
+  margin-top: 5rem;
+  height: 2px;
+  background-color: gray;
+  margin-bottom: 2rem;
+}
+
+.menus {
   opacity: 0;
   visibility: hidden;
-  transition: all .3s ease-in-out;
+  transition: all 0.3s ease-in-out;
 }
 
-.menus.openMobile{
+.menus.openMobile {
   opacity: 1;
   visibility: visible;
-  
 }
 
-.hamburger.showMobile .line-1{
-  transform: rotate(45deg) translate(5px,5px) ;
+.hamburger.showMobile .line-1 {
+  transform: rotate(45deg) translate(5px, 5px);
 }
 
-.hamburger.showMobile .line-2{
+.hamburger.showMobile .line-2 {
   /* opacity: 0; */
   visibility: hidden;
 }
-.hamburger.showMobile .line-3{
-  transform: rotate(-45deg) translate(5px,-5px);
-  
+.hamburger.showMobile .line-3 {
+  transform: rotate(-45deg) translate(5px, -5px);
 }
 
-main{
+main {
   scroll-snap-type: y proximity;
   overflow-y: scroll;
   height: 100vh;
 }
 
-.nav-hero-contain, section{
+.nav-hero-contain,
+section {
   scroll-snap-align: start;
 }
 
-.card, 
+.card,
 .project {
   animation: scroll linear both;
   animation-timeline: view();
   animation-range: entry 40% cover 40%;
 }
 
-
-
-@keyframes scroll{
-  0%{
+@keyframes scroll {
+  0% {
     opacity: 0;
   }
-  50%{ 
+  50% {
     opacity: 0.5;
-
   }
-  100%{ 
+  100% {
     opacity: 1;
-
   }
 }
 

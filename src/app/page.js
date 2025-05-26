@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { BsFillMoonStarsFill } from "react-icons/bs";
 import { AiFillLinkedin, AiFillInstagram, AiFillGithub } from "react-icons/ai";
 
@@ -11,7 +11,6 @@ import webApp from "/public/web-App.png";
 import blog from "/public/blog.png";
 import noteApp from "/public/noteApp.png";
 import weatherApp2 from "/public/weatherApp2.png";
-import web1 from "/public/web1.png";
 import ecommerceApp from "/public/ecommerce.png";
 
 export default function Home() {
@@ -22,18 +21,30 @@ export default function Home() {
     setOpenmenu((prev) => !prev);
   };
 
+  useEffect(() => {
+    const saved = localStorage.getItem("darkMode");
+    setDarkMode(saved ? JSON.parse(saved) : false);
+  }, []);
+
   const toggleDarkMode = () => {
-    setDarkMode((prev) => !prev);
+    const newMode = !darkMode;
+    setDarkMode(newMode);
+    localStorage.setItem("darkMode", JSON.stringify(newMode));
+    document.documentElement.classList.toggle("dark", newMode);
   };
+
   return (
-    <div className={`${darkMode ? "dark" : ""}`}>
+    <div className="">
       <main className={`px-6 font-poppins dark:bg-gray-900`}>
-        <nav className=" flex justify-between items-center py-6 fixed left-0 px-8 w-full z-50 md:bg-gray-50 dark:bg-gray-900 dark:text-white">
+        <nav className=" shadow-md flex justify-between items-center py-6 fixed left-0 px-8 w-full z-50 md:bg-gray-50 dark:bg-gray-900 dark:text-white">
           {/* ---------LOGO----------------- */}
           <div className="logo">
-            <h2 className=" font-prism font-bold text-2xl cursor-pointer">
+            <a
+              href="#hero"
+              className=" font-prism font-bold text-2xl cursor-pointer"
+            >
               SEIDU
-            </h2>
+            </a>
           </div>
 
           <div className="flex items-center gap-6 ">
@@ -57,7 +68,7 @@ export default function Home() {
                 <li className="hover:underline underline-offset-8">
                   <a
                     className="text-white md:textblack text-xl dark:text-white"
-                    href="#"
+                    href="#hero"
                   >
                     Home
                   </a>
@@ -65,7 +76,7 @@ export default function Home() {
                 <li className="hover:underline underline-offset-8">
                   <a
                     className="text-white md:textblack text-xl dark:text-white"
-                    href="#"
+                    href="#portfolio"
                   >
                     Projects
                   </a>
@@ -96,12 +107,15 @@ export default function Home() {
               }`}
             >
               <li className=" hover:underline underline-offset-8">
-                <a className="text-black text-xl dark:text-white" href="#">
+                <a className="text-black text-xl dark:text-white" href="#hero">
                   Home
                 </a>
               </li>
               <li className=" hover:underline underline-offset-8">
-                <a className="text-black text-xl dark:text-white" href="#">
+                <a
+                  className="text-black text-xl dark:text-white"
+                  href="#portfolio"
+                >
                   Projects
                 </a>
               </li>
@@ -178,8 +192,15 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="relative flex w-80 h-80  rounded-full bg-gradient-to-b from-teal-500 mt-16 overflow-hidden mx-auto md:mx-0 md:mt-0 ">
-              <Image src={Seidu} layout="fill" objectFit="cover" />
+            <div className="relative flex w-80 h-80 rounded-full bg-gradient-to-b from-teal-500 mt-16 overflow-hidden mx-auto md:mx-0 md:mt-0 ">
+              <Image
+                src={Seidu}
+                fill
+                priority
+                sizes="(max-width: 768px) 100vw, 300px"
+                className="object-cover"
+                alt="profile pic"
+              />
             </div>
           </div>
         </section>
@@ -195,7 +216,7 @@ export default function Home() {
             </h2>
             <div className="cards lg:flex gap-10">
               <div className="card flex-1 flex flex-col items-center shadow-md p-8 rounded-lg mb-16 lg:mb-0 dark:bg-white ">
-                <Image src={websiteIcon} className="py-6" />
+                <Image src={websiteIcon} className="py-6" alt="website icon" />
                 <h3 className="text-2xl text-gray-600 font-medium py-4 text-center ">
                   Frontend Development
                 </h3>
@@ -219,7 +240,11 @@ export default function Home() {
               </div>
 
               <div className="card flex-1 flex flex-col items-center shadow-md p-8 rounded-lg mb-16 lg:mb-0 dark:bg-white ">
-                <Image src={websiteIcon} className="py-6" />
+                <Image
+                  src={websiteIcon}
+                  className="py-6"
+                  alt="web design icon"
+                />
                 <h3 className="text-2xl text-gray-600 font-medium py-4 text-center ">
                   Design
                 </h3>
@@ -238,7 +263,7 @@ export default function Home() {
               </div>
 
               <div className="card flex-1 flex flex-col items-center shadow-md p-8 rounded-lg mb-16 lg:mb-0 dark:bg-white ">
-                <Image src={webApp} className="py-6" />
+                <Image src={webApp} className="py-6" alt="wen app icon" />
                 <h3 className="text-2xl text-gray-600 font-medium py-4 text-center ">
                   Backend Development
                 </h3>
@@ -274,20 +299,95 @@ export default function Home() {
 
             <div className="projects flex flex-col gap-10 md:flex-row flex-wrap">
               <div className=" project basis-1/3 flex-1 shadow-lg rounded-lg">
-                <Image src={blog} className="rounded-lg" />
+                <Image
+                  src={blog}
+                  className="rounded-lg"
+                  alt="Screenshot of blog project"
+                />
               </div>
               <div className="project basis-1/3 flex-1 shadow-lg rounded-lg">
-                <Image src={noteApp} className="rounded-lg" />
+                <Image
+                  src={noteApp}
+                  className="rounded-lg"
+                  alt="Screenshot of noteApp project"
+                />
               </div>
               <div className="project basis-1/3 flex-1 shadow-lg rounded-lg">
-                <Image src={ecommerceApp} className="rounded-lg" />
+                <Image
+                  src={ecommerceApp}
+                  className="rounded-lg"
+                  alt="Screenshot of ecommerce project"
+                />
               </div>
               <div className="project basis-1/3 flex-1 shadow-lg rounded-lg">
-                <Image src={weatherApp2} className="rounded-lg" />
+                <Image
+                  src={weatherApp2}
+                  className="rounded-lg"
+                  alt="Screenshot of weather project"
+                />
               </div>
             </div>
           </div>
         </section>
+
+        <section
+          id="portfolio"
+          className="md:container md:mx-auto py-20 items-center "
+        >
+          <div className="lg:flex lg:items-start lg:gap-10">
+            <div className="mb-8 flex-1">
+              <h2 className="mb-5 text-3xl text-gray-600 font-medium text-center underline underline-offset-8 decoration-teal-500 dark:text-white">
+                Contact
+              </h2>
+
+              <div className="flex flex-col gap-10 md:flex-row flex-wrap">
+                <p className="text-gray-600 text-center dark:text-white">
+                  I would like to hear about your project and how I could help.
+                  Please fill in the form, and I will get back to you as soon as
+                  possible.
+                </p>
+              </div>
+            </div>
+
+            <form className="space-y-6 flex-1 flex flex-col items-center">
+              <div className="w-full ">
+                <input
+                  type="text"
+                  placeholder="NAME"
+                  className="bg-transparent border-b border-gray-400 focus:outline-none focus:border-blue-500 px-2 py-1 w-full dark:text-white"
+                />
+              </div>
+
+              <div className="w-full ">
+                <input
+                  type="text"
+                  placeholder="EMAIL"
+                  className="bg-transparent border-b border-gray-400 focus:outline-none focus:border-blue-500 px-2 py-1 w-full dark:text-white"
+                />
+              </div>
+
+              <div className="w-full ">
+                <textarea
+                  placeholder="Message"
+                  className="bg-transparent border-b border-gray-400 focus:outline-none focus:border-blue-500 px-2 py-1 w-full dark:text-white resize-none"
+                  rows="4"
+                />
+              </div>
+
+              <button
+                type="submit"
+                className="self-end underline underline-offset-8 decoration-teal-500 dark:text-white"
+              >
+                Send Message
+              </button>
+            </form>
+          </div>
+        </section>
+
+        <div className="section-border"></div>
+        <p className="text-center text-gray-500 dark:text-gray-400 text-sm my-8">
+          &copy; 2025 Seidu. All rights reserved.
+        </p>
       </main>
     </div>
   );
