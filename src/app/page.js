@@ -2,8 +2,10 @@
 
 import { useState, useEffect } from "react";
 import { BsFillMoonStarsFill } from "react-icons/bs";
-import { AiFillLinkedin, AiFillInstagram, AiFillGithub } from "react-icons/ai";
+import { AiFillLinkedin, AiFillGithub } from "react-icons/ai";
+import Tilt from "react-parallax-tilt";
 
+// internal imports
 import Image from "next/image";
 import Seidu from "/public/seidu.png";
 import websiteIcon from "/public/web-icon.png";
@@ -33,10 +35,13 @@ export default function Home() {
     document.documentElement.classList.toggle("dark", newMode);
   };
 
+  // Footer dynamic Year
+  const currentYr = new Date().getFullYear();
+
   return (
     <div className="">
       <main className={`px-6 font-poppins dark:bg-gray-900`}>
-        <nav className=" shadow-md flex justify-between items-center py-6 fixed left-0 px-8 w-full z-50 md:bg-gray-50 dark:bg-gray-900 dark:text-white">
+        <nav className=" shadow-md flex justify-between items-center py-6 fixed left-0 px-8 w-full z-50 bg-gray-50 dark:bg-gray-900 dark:text-white">
           {/* ---------LOGO----------------- */}
           <div className="logo">
             <a
@@ -57,7 +62,7 @@ export default function Home() {
             <div
               className={`${
                 openMenu
-                  ? "bg-black opacity-90 fixed top-0 left-0 w-full h-screen md:hidden "
+                  ? "bg-black/80 backdrop-blur-sm fixed top-0 left-0 w-full h-screen md:hidden "
                   : ""
               }`}
             >
@@ -96,7 +101,8 @@ export default function Home() {
                 <li>
                   <a
                     className="text-xl bg-cyan-500 px-4 py-2 rounded-md text-white"
-                    href="#"
+                    href="/software_dev_resume.pdf"
+                    target="_blank"
                     onClick={() => setOpenmenu(false)}
                   >
                     Resume
@@ -132,7 +138,8 @@ export default function Home() {
               <li>
                 <a
                   className="text-xl bg-cyan-500 px-4 py-2 rounded-md text-white"
-                  href="#"
+                  href="/software_dev_resume.pdf"
+                  target="_blank"
                 >
                   Resume
                 </a>
@@ -169,7 +176,7 @@ export default function Home() {
 
         <section
           id="hero"
-          className=" h-[calc(100vh-80px)] md:container md:mx-auto flex py-20"
+          className=" lg:h-[calc(100vh-80px)] md:container md:mx-auto flex py-20"
         >
           <div className="md:flex w-full justify-around items-center gap-4 mx-auto px-4 py-10 md:mx-0 md:shadow-md rounded-lg ">
             <div className="flex flex-col items-center md:items-start md:w-1/2 ">
@@ -177,26 +184,34 @@ export default function Home() {
                 Seidu Abdul Salam
               </h2>
               <h4 className=" py-2 text-gray-500 font-semibold text-xl dark:text-white">
-                Web Developer
+                Software Developer
               </h4>
               <p className="max-w-lg text-center md:text-left text-gray-500 text-lg py-4 font-medium dark:text-white">
-                Full Stack developer with passion for creating new things. I
-                love to learn new skills and technology and also enjoy football.
+                A Full Stack Developer experienced in crafting robust APIs,
+                scalable services, and dynamic UIs using modern technologies
+                like React, Node.js, and SQL. <br />I build full-stack solutions
+                that blend performance, security, and design — from REST APIs to
+                responsive interfaces.
               </p>
               <div className="social-icons flex justify-center gap-10 py-5 text-4xl text-gray-500 dark:text-white">
-                <a href="#">
+                <a
+                  href="https://www.linkedin.com/in/seidu-abdul-salam-434b421a2/"
+                  aria-label="linkedInprofile"
+                  target="blank"
+                >
                   <AiFillLinkedin className=" cursor-pointer hover:text-gray-700" />
                 </a>
-                <a href="#">
+                <a
+                  href="https://github.com/Emaani-gh"
+                  aria-label="git profile"
+                  target="blank"
+                >
                   <AiFillGithub className=" cursor-pointer hover:text-gray-700" />
-                </a>
-                <a href="#">
-                  <AiFillInstagram className=" cursor-pointer hover:text-gray-700" />
                 </a>
               </div>
             </div>
 
-            <div className="relative flex w-80 h-80 rounded-full bg-gradient-to-b from-teal-500 mt-16 overflow-hidden mx-auto md:mx-0 md:mt-0 ">
+            <div className="relative flex w-60 h-60 rounded-full bg-gradient-to-b from-teal-500 mt-16 overflow-hidden mx-auto md:mx-0 md:mt-0 ">
               <Image
                 src={Seidu}
                 fill
@@ -212,82 +227,102 @@ export default function Home() {
         {/* =========================SECTION SERVICES========================= */}
         <section
           id="service"
-          className="min-h-screen md:container md:mx-auto py-20 flex items-center"
+          className="min-h-screen md:container md:mx-auto py-20 flex justify-center items-center"
         >
           <div>
             <h2 className="py-8 mb-10 text-3xl text-gray-600 font-medium text-center underline underline-offset-8 decoration-teal-500 dark:text-white ">
               What I Do
             </h2>
-            <div className="cards lg:flex gap-10">
-              <div className="card flex-1 flex flex-col items-center shadow-md p-8 rounded-lg mb-16 lg:mb-0 dark:bg-white ">
-                <Image src={websiteIcon} className="py-6" alt="website icon" />
-                <h3 className="text-2xl text-gray-600 font-medium py-4 text-center ">
-                  Frontend Development
-                </h3>
-                <p className="text-gray-600 text-lg font-medium py-4 text-center">
-                  I build responsive and interactive frontend Websites and Apps
-                  using modern technologies
-                </p>
-                <h4 className="text-lg text-teal-500 font-bold py-2 text-center">
-                  Skills & Technologies
-                </h4>
-                <ul className="text-center">
-                  <li className=" text-gray-700 font-medium py-1">HTML</li>
-                  <li className=" text-gray-700 font-medium py-1">
-                    CSS, Tailwind, Bootstrap
-                  </li>
-                  <li className=" text-gray-700 font-medium py-1">
-                    JavaScript
-                  </li>
-                  <li className=" text-gray-700 font-medium py-1">React</li>
-                </ul>
-              </div>
+            <div className="cards md:flex-wrap md:flex gap-10">
+              <Tilt className="card flex-1 min-w-[280px] max-w-[320px]   flex flex-col items-center shadow-lg bg-[#f7f7f7] p-2 rounded-lg mb-16 lg:mb-0 dark:bg-white">
+                <div>
+                  <Image
+                    src={websiteIcon}
+                    className="m-2"
+                    alt="website icon"
+                    width={50}
+                  />
+                  <h3 className="text-2xl text-gray-600 font-medium py-2 text-center ">
+                    Frontend Development
+                  </h3>
+                  <p className="text-gray-600 text-lg font-medium py-4 text-center">
+                    I build responsive and interactive frontend Websites and
+                    Apps using modern technologies
+                  </p>
+                  <h4 className="text-lg text-teal-500 font-bold py-2 text-center">
+                    Skills & Technologies
+                  </h4>
+                  <ul className="text-center">
+                    <li className=" text-gray-700 font-medium py-1">React</li>
+                    <li className=" text-gray-700 font-medium py-1">
+                      JavaScript
+                    </li>
+                    <li className=" text-gray-700 font-medium py-1">
+                      CSS3, Tailwind, Bootstrap
+                    </li>
+                    <li className=" text-gray-700 font-medium py-1">HTML5</li>
+                  </ul>
+                </div>
+              </Tilt>
 
-              <div className="card flex-1 flex flex-col items-center shadow-md p-8 rounded-lg mb-16 lg:mb-0 dark:bg-white ">
-                <Image
-                  src={websiteIcon}
-                  className="py-6"
-                  alt="web design icon"
-                />
-                <h3 className="text-2xl text-gray-600 font-medium py-4 text-center ">
-                  Design
-                </h3>
-                <p className="text-gray-600 text-lg font-medium py-4 text-center">
-                  I build responsive and interactive Designs
-                </p>
-                <h4 className="text-lg text-teal-500 font-bold py-2 text-center">
-                  Skills & Technologies
-                </h4>
-                <ul className="text-center">
-                  <li className=" text-gray-700 font-medium py-1">Figma</li>
-                  <li className=" text-gray-700 font-medium py-1">
-                    Adobe Illustrator
-                  </li>
-                </ul>
-              </div>
+              <Tilt className="card flex-1 min-w-[280px] max-w-[320px]  flex flex-col items-center shadow-lg bg-[#f7f7f7] p-2 rounded-lg mb-16 lg:mb-0 dark:bg-white">
+                <div>
+                  <Image
+                    src={websiteIcon}
+                    className="py-2"
+                    alt="web design icon"
+                    width={50}
+                  />
+                  <h3 className="text-2xl text-gray-600 font-medium py-2 text-center ">
+                    Design
+                  </h3>
+                  <p className="text-gray-600 text-lg font-medium py-4 text-center">
+                    I build responsive, accessible and interactive Designs
+                  </p>
+                  <h4 className="text-lg text-teal-500 font-bold py-2 text-center">
+                    Skills & Technologies
+                  </h4>
+                  <ul className="text-center">
+                    <li className=" text-gray-700 font-medium py-1">Figma</li>
+                    <li className=" text-gray-700 font-medium py-1">Sketch</li>
+                    <li className=" text-gray-700 font-medium py-1">
+                      Adobe Illustrator
+                    </li>
+                  </ul>
+                </div>
+              </Tilt>
 
-              <div className="card flex-1 flex flex-col items-center shadow-md p-8 rounded-lg mb-16 lg:mb-0 dark:bg-white ">
-                <Image src={webApp} className="py-6" alt="wen app icon" />
-                <h3 className="text-2xl text-gray-600 font-medium py-4 text-center ">
-                  Backend Development
-                </h3>
-                <p className="text-gray-600 text-lg font-medium py-4 text-center">
-                  I build optimized backend applications using modern
-                  technologies
-                </p>
-                <h4 className="text-lg text-teal-500 font-bold py-2 text-center">
-                  Skills & Technologies
-                </h4>
-                <ul className="text-center">
-                  <li className=" text-gray-700 font-medium py-1">
-                    Nodejs,Express,Nest js
-                  </li>
-                  <li className=" text-gray-700 font-medium py-1">Amazon S3</li>
-                  <li className=" text-gray-700 font-medium py-1">
-                    MySQL,MongoDB
-                  </li>
-                </ul>
-              </div>
+              <Tilt className="card flex-1 min-w-[280px] max-w-[320px]  flex flex-col items-center shadow-lg bg-[#f7f7f7] p-2 rounded-lg mb-16 lg:mb-0 dark:bg-white">
+                <div>
+                  <Image
+                    src={webApp}
+                    className="py-2"
+                    alt="web app icon"
+                    width={50}
+                  />
+                  <h3 className="text-2xl text-gray-600 font-medium py-2 text-center ">
+                    Backend Development
+                  </h3>
+                  <p className="text-gray-600 text-lg font-medium py-4 text-center">
+                    I build optimized backend applications using modern
+                    technologies
+                  </p>
+                  <h4 className="text-lg text-teal-500 font-bold py-2 text-center">
+                    Skills & Technologies
+                  </h4>
+                  <ul className="text-center">
+                    <li className=" text-gray-700 font-medium py-1">
+                      Nodejs,Express,Nest js
+                    </li>
+                    <li className=" text-gray-700 font-medium py-1">
+                      Amazon S3
+                    </li>
+                    <li className=" text-gray-700 font-medium py-1">
+                      MySQL,MongoDB
+                    </li>
+                  </ul>
+                </div>
+              </Tilt>
             </div>
           </div>
         </section>
@@ -302,7 +337,7 @@ export default function Home() {
             </h2>
 
             <div className="projects flex flex-col gap-10 md:flex-row flex-wrap">
-              <div className=" project basis-1/3 flex-1 shadow-lg rounded-lg flex flex-col">
+              <div className="bg-[#f7f7f7]  project basis-1/3 flex-1 shadow-lg rounded-lg flex flex-col">
                 <div className="overflow-hidden h-60">
                   <Image
                     src={blog}
@@ -324,7 +359,7 @@ export default function Home() {
 
                   <div className="flex gap-4">
                     <a
-                      href="https://github.com/Emaani-gh/nay_writes_backend"
+                      href="https://github.com/Emaani-gh/nay_writes_frontend"
                       target="_blank"
                       className="text-teal-500 hover:underline"
                     >
@@ -341,7 +376,7 @@ export default function Home() {
                 </div>
               </div>
 
-              <div className="project basis-1/3 flex-1 shadow-lg rounded-lg flex flex-col">
+              <div className="bg-[#f7f7f7] project basis-1/3 flex-1 shadow-lg rounded-lg flex flex-col">
                 <div className="overflow-hidden h-60">
                   <Image
                     src={noteApp}
@@ -363,7 +398,7 @@ export default function Home() {
                   </div>
                   <div className="flex gap-4 ">
                     <a
-                      href="https://github.com/Emaani-gh/note-api"
+                      href="https://github.com/Emaani-gh/note-app"
                       target="_blank"
                       className="text-teal-500 hover:underline"
                     >
@@ -380,7 +415,7 @@ export default function Home() {
                 </div>
               </div>
 
-              <div className="project basis-1/3 flex-1 shadow-lg rounded-lg flex flex-col">
+              <div className="bg-[#f7f7f7] project basis-1/3 flex-1 shadow-lg rounded-lg flex flex-col">
                 <div className="overflow-hidden h-60">
                   <Image
                     src={ecommerceApp}
@@ -419,7 +454,7 @@ export default function Home() {
                 </div>
               </div>
 
-              <div className="project basis-1/3 flex-1 shadow-lg rounded-lg flex flex-col">
+              <div className="bg-[#f7f7f7] project basis-1/3 flex-1 shadow-lg rounded-lg flex flex-col">
                 <div className="overflow-hidden h-60">
                   <Image
                     src={weatherApp2}
@@ -465,7 +500,7 @@ export default function Home() {
           id="contact"
           className="md:container md:mx-auto py-20 items-center "
         >
-          <div className="lg:flex lg:items-start lg:gap-10">
+          <div className="max-w-[550px] my-0 mx-auto border rounded-lg p-4 lg:items-start lg:gap-10">
             <div className="mb-8 flex-1">
               <h2 className="mb-5 text-3xl text-gray-600 font-medium text-center underline underline-offset-8 decoration-teal-500 dark:text-white">
                 Contact
@@ -500,14 +535,14 @@ export default function Home() {
               <div className="w-full ">
                 <textarea
                   placeholder="Message"
-                  className="bg-transparent border-b border-gray-400 focus:outline-none focus:border-blue-500 px-2 py-1 w-full dark:text-white resize-none"
+                  className="overflow-hidden bg-transparent border-b border-gray-400 focus:outline-none focus:border-blue-500 px-2 py-1 w-full dark:text-white resize-none"
                   rows="4"
                 />
               </div>
 
               <button
                 type="submit"
-                className="self-end underline underline-offset-8 decoration-teal-500 dark:text-white"
+                className="self-center md:self-end text-xl bg-teal-500 hover:bg-teal-400 px-4 py-2 rounded-md text-white dark:text-white"
               >
                 Send Message
               </button>
@@ -517,7 +552,7 @@ export default function Home() {
 
         <div className="section-border"></div>
         <p className="text-center text-gray-500 dark:text-gray-400 text-sm my-8">
-          &copy; 2025 Seidu. All rights reserved.
+          &copy; {currentYr} Seidu. All rights reserved.
         </p>
       </main>
     </div>
