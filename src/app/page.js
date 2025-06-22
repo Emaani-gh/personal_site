@@ -12,6 +12,7 @@ import Tilt from "react-parallax-tilt";
 export default function Home() {
   const [openMenu, setOpenmenu] = useState(false);
   const [darkMode, setDarkMode] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState(false);
   const [error, setError] = useState("");
 
@@ -34,8 +35,9 @@ export default function Home() {
 
   // Email handling
   const handleEmailSubmit = async (e) => {
-    const url = "http://localhost:3000/send-email";
+    const url = "https://email-api-aewx.onrender.com/send-email";
     e.preventDefault();
+    setLoading(true);
 
     // const form = new FormData(e.target);
     const formElement = e.target;
@@ -66,6 +68,8 @@ export default function Home() {
       setError("Network error. Please try again.");
       setMessage(false); // hide success
       console.log(error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -384,10 +388,10 @@ export default function Home() {
                 </div>
                 <div className="p-4 flex justify-end flex-col flex-1">
                   <div>
-                    <h3 className="text-xl font-semibold text-gray-800 dark:text-white mb-2">
+                    <h3 className="text-xl font-semibold text-gray-800  mb-2">
                       Blogs App
                     </h3>
-                    <p className="text-gray-600 dark:text-gray-300 mb-4">
+                    <p className="text-gray-600  mb-4">
                       A full-stack blog platform using React, Express.js,
                       MongoDB, and JWT for authentication. Users can create,
                       edit, and delete blog posts securely.
@@ -423,10 +427,10 @@ export default function Home() {
                 </div>
                 <div className="p-4 flex justify-end flex-col flex-1">
                   <div>
-                    <h3 className="text-xl font-semibold text-gray-800 dark:text-white mb-2">
+                    <h3 className="text-xl font-semibold text-gray-800 mb-2">
                       Notes App
                     </h3>
-                    <p className="text-gray-600 dark:text-gray-300 mb-4">
+                    <p className="text-gray-600 mb-4">
                       A full-stack note-taking application built with React,
                       Express.js, and MySQL. Users can add, update, and delete
                       notes with persistent storage and a clean, responsive
@@ -462,10 +466,10 @@ export default function Home() {
                 </div>
                 <div className="p-4 flex justify-end flex-col flex-1">
                   <div>
-                    <h3 className="text-xl font-semibold text-gray-800 dark:text-white mb-2">
+                    <h3 className="text-xl font-semibold text-gray-800  mb-2">
                       Ecommerce App
                     </h3>
-                    <p className="text-gray-600 dark:text-gray-300 mb-4">
+                    <p className="text-gray-600  mb-4">
                       An eCommerce web application built with React and the
                       FakeStore API. It features product listing, detailed
                       views, and a cart system implemented using React Context
@@ -501,10 +505,10 @@ export default function Home() {
                 </div>
                 <div className="p-4 flex justify-end flex-col flex-1">
                   <div>
-                    <h3 className="text-xl font-semibold text-gray-800 dark:text-white mb-2">
+                    <h3 className="text-xl font-semibold text-gray-800  mb-2">
                       Ecommerce App
                     </h3>
-                    <p className="text-gray-600 dark:text-gray-300 mb-4">
+                    <p className="text-gray-600  mb-4">
                       A React weather app using the OpenWeather API. It shows
                       real-time weather by city or your current location using
                       geolocation.
@@ -558,6 +562,7 @@ export default function Home() {
             >
               <div className="w-full ">
                 <input
+                  required
                   type="text"
                   name="name"
                   placeholder="NAME"
@@ -567,6 +572,7 @@ export default function Home() {
 
               <div className="w-full ">
                 <input
+                  required
                   type="text"
                   name="email"
                   placeholder="EMAIL"
@@ -577,6 +583,7 @@ export default function Home() {
               <div className="w-full ">
                 <textarea
                   name="message"
+                  required
                   placeholder="Message"
                   className="overflow-hidden bg-transparent border-b border-gray-400 focus:outline-none focus:border-blue-500 px-2 py-1 w-full dark:text-white resize-none"
                   rows="4"
@@ -585,9 +592,37 @@ export default function Home() {
 
               <button
                 type="submit"
-                className="self-center md:self-end text-xl bg-teal-500 text-white dark:text-white px-4 py-2 rounded-md transition-all duration-300 hover:bg-teal-600 hover:scale-105 shadow-md hover:shadow-lg"
+                disabled={loading}
+                className={`self-center md:self-end text-xl bg-teal-500 text-white dark:text-white px-4 py-2 rounded-md transition-all duration-300 hover:bg-teal-600 shadow-md ${
+                  loading
+                    ? "opacity-60 cursor-not-allowed"
+                    : "hover:scale-105 hover:shadow-lg"
+                }`}
               >
-                Send Message
+                {loading ? (
+                  <svg
+                    className="animate-spin h-5 w-5 text-white mx-auto"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                  >
+                    <circle
+                      className="opacity-25"
+                      cx="12"
+                      cy="12"
+                      r="10"
+                      stroke="currentColor"
+                      strokeWidth="4"
+                    ></circle>
+                    <path
+                      className="opacity-75"
+                      fill="currentColor"
+                      d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"
+                    ></path>
+                  </svg>
+                ) : (
+                  "Send Message"
+                )}
               </button>
             </form>
             {message && (
