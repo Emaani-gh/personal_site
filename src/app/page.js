@@ -2,22 +2,18 @@
 
 import { useState, useEffect } from "react";
 import { BsFillMoonStarsFill } from "react-icons/bs";
-import { AiFillLinkedin, AiFillGithub } from "react-icons/ai";
+import {
+  AiFillLinkedin,
+  AiFillGithub,
+  AiOutlineFileText,
+} from "react-icons/ai";
 import Tilt from "react-parallax-tilt";
-
-// internal imports
-import Image from "next/image";
-import Seidu from "/public/seidu.png";
-import websiteIcon from "/public/web-icon.png";
-import webApp from "/public/web-App.png";
-import blog from "/public/blog.png";
-import noteApp from "/public/noteApp.png";
-import weatherApp2 from "/public/weatherApp2.png";
-import ecommerceApp from "/public/ecommerce.png";
 
 export default function Home() {
   const [openMenu, setOpenmenu] = useState(false);
   const [darkMode, setDarkMode] = useState(false);
+  const [message, setMessage] = useState(false);
+  const [error, setError] = useState("");
 
   const toggleMenu = () => {
     setOpenmenu((prev) => !prev);
@@ -28,11 +24,49 @@ export default function Home() {
     setDarkMode(saved ? JSON.parse(saved) : false);
   }, []);
 
+  // dark mode toggler
   const toggleDarkMode = () => {
     const newMode = !darkMode;
     setDarkMode(newMode);
     localStorage.setItem("darkMode", JSON.stringify(newMode));
     document.documentElement.classList.toggle("dark", newMode);
+  };
+
+  // Email handling
+  const handleEmailSubmit = async (e) => {
+    const url = "http://localhost:3000/send-email";
+    e.preventDefault();
+
+    // const form = new FormData(e.target);
+    const formElement = e.target;
+    const form = new FormData(formElement);
+
+    const data = {
+      name: form.get("name"),
+      email: form.get("email"),
+      message: form.get("message"),
+    };
+
+    try {
+      const res = await fetch(url, {
+        method: "POST",
+        headers: { "content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+
+      if (res.ok) {
+        setMessage(true);
+        setError("");
+        formElement.reset(); // proper reset
+      } else {
+        setError("Something went wrong. Try again.");
+        setMessage(false); // hide success
+      }
+    } catch (error) {
+      setError("Network error. Please try again.");
+      setMessage(false); // hide success
+      console.log(error);
+    }
   };
 
   // Footer dynamic Year
@@ -41,11 +75,12 @@ export default function Home() {
   return (
     <div className="">
       <main className={`px-6 font-poppins dark:bg-gray-900`}>
+        {/* ====================================NAV BAR =========================================================================== */}
         <nav className=" shadow-md flex justify-between items-center py-6 fixed left-0 px-8 w-full z-50 bg-gray-50 dark:bg-gray-900 dark:text-white">
           {/* ---------LOGO----------------- */}
           <div className="logo">
             <a
-              href="#hero"
+              href="/"
               className=" font-prism font-bold text-2xl cursor-pointer"
             >
               SEIDU
@@ -100,7 +135,7 @@ export default function Home() {
                 </li>
                 <li>
                   <a
-                    className="text-xl bg-cyan-500 px-4 py-2 rounded-md text-white"
+                    className="text-xl bg-cyan-500 px-4 py-2 rounded-md text-white transition-all duration-300 hover:bg-cyan-600 hover:scale-105 shadow-md hover:shadow-lg"
                     href="/software_dev_resume.pdf"
                     target="_blank"
                     onClick={() => setOpenmenu(false)}
@@ -137,9 +172,10 @@ export default function Home() {
 
               <li>
                 <a
-                  className="text-xl bg-cyan-500 px-4 py-2 rounded-md text-white"
+                  className="text-xl bg-cyan-500 px-4 py-2 rounded-md text-white transition-all duration-300 hover:bg-cyan-600 hover:scale-105 shadow-md hover:shadow-lg"
                   href="/software_dev_resume.pdf"
                   target="_blank"
+                  onClick={() => setOpenmenu(false)}
                 >
                   Resume
                 </a>
@@ -208,17 +244,21 @@ export default function Home() {
                 >
                   <AiFillGithub className=" cursor-pointer hover:text-gray-700" />
                 </a>
+                <a
+                  href="/software_dev_resume.pdf"
+                  aria-label="git profile"
+                  target="blank"
+                >
+                  <AiOutlineFileText className=" cursor-pointer hover:text-gray-700" />
+                </a>
               </div>
             </div>
 
-            <div className="relative flex w-60 h-60 rounded-full bg-gradient-to-b from-teal-500 mt-16 overflow-hidden mx-auto md:mx-0 md:mt-0 ">
-              <Image
-                src={Seidu}
-                fill
-                priority
-                sizes="(max-width: 768px) 100vw, 300px"
-                className="object-cover"
+            <div className="relative flex w-60 h-60 rounded-full bg-gradient-to-b from-teal-500 mt-16 overflow-hidden mx-auto md:mx-0 md:mt-0">
+              <img
+                src="/seidu.png"
                 alt="profile pic"
+                className="object-cover w-full h-full absolute inset-0"
               />
             </div>
           </div>
@@ -236,11 +276,10 @@ export default function Home() {
             <div className="cards md:flex-wrap md:flex gap-10">
               <Tilt className="card flex-1 min-w-[280px] max-w-[320px]   flex flex-col items-center shadow-lg bg-[#f7f7f7] p-2 rounded-lg mb-16 lg:mb-0 dark:bg-white">
                 <div>
-                  <Image
-                    src={websiteIcon}
-                    className="m-2"
+                  <img
+                    src="/web-icon.png"
+                    className="m-2 w-[64px] "
                     alt="website icon"
-                    width={50}
                   />
                   <h3 className="text-2xl text-gray-600 font-medium py-2 text-center ">
                     Frontend Development
@@ -267,11 +306,10 @@ export default function Home() {
 
               <Tilt className="card flex-1 min-w-[280px] max-w-[320px]  flex flex-col items-center shadow-lg bg-[#f7f7f7] p-2 rounded-lg mb-16 lg:mb-0 dark:bg-white">
                 <div>
-                  <Image
-                    src={websiteIcon}
-                    className="py-2"
+                  <img
+                    src="/web-icon.png"
+                    className="m-2 w-[64px]"
                     alt="web design icon"
-                    width={50}
                   />
                   <h3 className="text-2xl text-gray-600 font-medium py-2 text-center ">
                     Design
@@ -294,11 +332,10 @@ export default function Home() {
 
               <Tilt className="card flex-1 min-w-[280px] max-w-[320px]  flex flex-col items-center shadow-lg bg-[#f7f7f7] p-2 rounded-lg mb-16 lg:mb-0 dark:bg-white">
                 <div>
-                  <Image
-                    src={webApp}
-                    className="py-2"
+                  <img
+                    src="/web-App.png"
+                    className="m-2 w-[64px]"
                     alt="web app icon"
-                    width={50}
                   />
                   <h3 className="text-2xl text-gray-600 font-medium py-2 text-center ">
                     Backend Development
@@ -339,8 +376,8 @@ export default function Home() {
             <div className="projects flex flex-col gap-10 md:flex-row flex-wrap">
               <div className="bg-[#f7f7f7]  project basis-1/3 flex-1 shadow-lg rounded-lg flex flex-col">
                 <div className="overflow-hidden h-60">
-                  <Image
-                    src={blog}
+                  <img
+                    src="/blog.png"
                     className="rounded-lg"
                     alt="Screenshot of blog project"
                   />
@@ -378,8 +415,8 @@ export default function Home() {
 
               <div className="bg-[#f7f7f7] project basis-1/3 flex-1 shadow-lg rounded-lg flex flex-col">
                 <div className="overflow-hidden h-60">
-                  <Image
-                    src={noteApp}
+                  <img
+                    src="/noteApp.png"
                     className="rounded-t-lg object-cover h-full w-full"
                     alt="Screenshot of noteApp project"
                   />
@@ -417,8 +454,8 @@ export default function Home() {
 
               <div className="bg-[#f7f7f7] project basis-1/3 flex-1 shadow-lg rounded-lg flex flex-col">
                 <div className="overflow-hidden h-60">
-                  <Image
-                    src={ecommerceApp}
+                  <img
+                    src="/ecommerce.png"
                     className="rounded-t-lg object-cover h-full w-full"
                     alt="Screenshot of noteApp project"
                   />
@@ -456,8 +493,8 @@ export default function Home() {
 
               <div className="bg-[#f7f7f7] project basis-1/3 flex-1 shadow-lg rounded-lg flex flex-col">
                 <div className="overflow-hidden h-60">
-                  <Image
-                    src={weatherApp2}
+                  <img
+                    src="/weatherApp2.png"
                     className="rounded-t-lg object-cover h-full w-full"
                     alt="Screenshot of noteApp project"
                   />
@@ -515,10 +552,14 @@ export default function Home() {
               </div>
             </div>
 
-            <form className="space-y-6 flex-1 flex flex-col items-center">
+            <form
+              onSubmit={handleEmailSubmit}
+              className="space-y-6 flex-1 flex flex-col items-center"
+            >
               <div className="w-full ">
                 <input
                   type="text"
+                  name="name"
                   placeholder="NAME"
                   className="bg-transparent border-b border-gray-400 focus:outline-none focus:border-blue-500 px-2 py-1 w-full dark:text-white"
                 />
@@ -527,6 +568,7 @@ export default function Home() {
               <div className="w-full ">
                 <input
                   type="text"
+                  name="email"
                   placeholder="EMAIL"
                   className="bg-transparent border-b border-gray-400 focus:outline-none focus:border-blue-500 px-2 py-1 w-full dark:text-white"
                 />
@@ -534,6 +576,7 @@ export default function Home() {
 
               <div className="w-full ">
                 <textarea
+                  name="message"
                   placeholder="Message"
                   className="overflow-hidden bg-transparent border-b border-gray-400 focus:outline-none focus:border-blue-500 px-2 py-1 w-full dark:text-white resize-none"
                   rows="4"
@@ -542,11 +585,17 @@ export default function Home() {
 
               <button
                 type="submit"
-                className="self-center md:self-end text-xl bg-teal-500 hover:bg-teal-400 px-4 py-2 rounded-md text-white dark:text-white"
+                className="self-center md:self-end text-xl bg-teal-500 text-white dark:text-white px-4 py-2 rounded-md transition-all duration-300 hover:bg-teal-600 hover:scale-105 shadow-md hover:shadow-lg"
               >
                 Send Message
               </button>
             </form>
+            {message && (
+              <p className="mt-4 text-green-600 text-center">
+                Your message was sent successfully!
+              </p>
+            )}
+            {error && <p className="mt-4 text-red-500 text-center">{error}</p>}
           </div>
         </section>
 

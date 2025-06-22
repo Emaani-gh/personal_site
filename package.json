@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
+    "start": "NODE_ENV=production node server.js",
+    "export": "next export",
     "lint": "next lint"
   },
   "dependencies": {
@@ -13,7 +14,8 @@
     "react": "^18",
     "react-dom": "^18",
     "react-icons": "^5.0.1",
-    "react-parallax-tilt": "^1.7.298"
+    "react-parallax-tilt": "^1.7.298",
+    "sharp": "^0.34.2"
   },
   "devDependencies": {
     "autoprefixer": "^10.0.1",
