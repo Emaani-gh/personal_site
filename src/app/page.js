@@ -1,6 +1,8 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Link from "next/link";
+
 import { BsFillMoonStarsFill } from "react-icons/bs";
 import {
   AiFillLinkedin,
@@ -83,12 +85,12 @@ export default function Home() {
         <nav className=" shadow-md flex justify-between items-center py-6 fixed left-0 px-8 w-full z-50 bg-gray-50 dark:bg-gray-900 dark:text-white">
           {/* ---------LOGO----------------- */}
           <div className="logo">
-            <a
+            <Link
               href="/"
               className=" font-prism font-bold text-2xl cursor-pointer"
             >
               SEIDU
-            </a>
+            </Link>
           </div>
 
           <div className="flex items-center gap-6 ">
@@ -110,42 +112,48 @@ export default function Home() {
                 top-20 md:hidden  ${openMenu ? "openMobile" : ""}`}
               >
                 <li className="hover:underline underline-offset-8">
-                  <a
+                  <Link
+                    scroll={true}
                     className="text-white md:textblack text-xl dark:text-white"
                     href="#hero"
                     onClick={() => setOpenmenu(false)}
                   >
                     Home
-                  </a>
+                  </Link>
                 </li>
+
                 <li className="hover:underline underline-offset-8">
-                  <a
+                  <Link
+                    scroll={true}
+                    className="text-white md:textblack text-xl dark:text-white"
+                    href="#service"
+                    onClick={() => setOpenmenu(false)}
+                  >
+                    services
+                  </Link>
+                </li>
+
+                <li className="hover:underline underline-offset-8">
+                  <Link
+                    scroll={true}
                     className="text-white md:textblack text-xl dark:text-white"
                     href="#portfolio"
                     onClick={() => setOpenmenu(false)}
                   >
                     Projects
-                  </a>
+                  </Link>
                 </li>
 
-                <li className="hover:underline underline-offset-8">
-                  <a
-                    className="text-white md:textblack text-xl dark:text-white"
-                    href="#"
-                    onClick={() => setOpenmenu(false)}
-                  >
-                    Blogs
-                  </a>
-                </li>
                 <li>
-                  <a
+                  <Link
+                    scroll={true}
                     className="text-xl bg-cyan-500 px-4 py-2 rounded-md text-white transition-all duration-300 hover:bg-cyan-600 hover:scale-105 shadow-md hover:shadow-lg"
                     href="/software_dev_resume.pdf"
                     target="_blank"
                     onClick={() => setOpenmenu(false)}
                   >
                     Resume
-                  </a>
+                  </Link>
                 </li>
               </ul>
             </div>
@@ -156,33 +164,45 @@ export default function Home() {
               }`}
             >
               <li className=" hover:underline underline-offset-8">
-                <a className="text-black text-xl dark:text-white" href="#hero">
+                <Link
+                  scroll={true}
+                  className="text-black text-xl dark:text-white"
+                  href="#hero"
+                >
                   Home
-                </a>
+                </Link>
               </li>
+
               <li className=" hover:underline underline-offset-8">
-                <a
+                <Link
+                  scroll={true}
+                  className="text-black text-xl dark:text-white"
+                  href="#service"
+                >
+                  Service
+                </Link>
+              </li>
+
+              <li className=" hover:underline underline-offset-8">
+                <Link
+                  scroll={true}
                   className="text-black text-xl dark:text-white"
                   href="#portfolio"
                 >
                   Projects
-                </a>
-              </li>
-              <li className=" hover:underline underline-offset-8">
-                <a className="text-black text-xl dark:text-white" href="#">
-                  Blogs
-                </a>
+                </Link>
               </li>
 
               <li>
-                <a
+                <Link
+                  scroll={true}
                   className="text-xl bg-cyan-500 px-4 py-2 rounded-md text-white transition-all duration-300 hover:bg-cyan-600 hover:scale-105 shadow-md hover:shadow-lg"
                   href="/software_dev_resume.pdf"
                   target="_blank"
                   onClick={() => setOpenmenu(false)}
                 >
                   Resume
-                </a>
+                </Link>
               </li>
             </ul>
             {/* ==================================HAMBURGER======================================= */}
@@ -216,7 +236,7 @@ export default function Home() {
 
         <section
           id="hero"
-          className=" lg:h-[calc(100vh-80px)] md:container md:mx-auto flex py-20"
+          className=" lg:h-[calc(100vh-80px)] md:container md:mx-auto flex pt-20"
         >
           <div className="md:flex w-full justify-around items-center gap-4 mx-auto px-4 py-10 md:mx-0 md:shadow-md rounded-lg ">
             <div className="flex flex-col items-center md:items-start md:w-1/2 ">
