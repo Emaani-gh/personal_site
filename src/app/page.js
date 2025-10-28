@@ -11,6 +11,91 @@ import {
 } from "react-icons/ai";
 import Tilt from "react-parallax-tilt";
 
+const projects = [
+  {
+    title: "Wandaga Home site",
+    image: "/wandaga.png",
+    desc: "A clean, responsive homepage showcasing Wandaga Tech Ltd tech services and innovative brand identity.",
+    links: [
+      {
+        title: "Live Demo",
+        href: "https://wandaga.com/",
+      },
+    ],
+  },
+  {
+    title: "Travel Ghana",
+    image: "/travgh.png",
+    desc: "A modern travel platform that helps users explore destinations, book trips, and discover experiences across Ghana with an easy-to-use interface.",
+    links: [
+      {
+        title: "Live Demo",
+        href: "https://travgh.wandaga.com/",
+      },
+    ],
+  },
+  {
+    title: "Blogs App",
+    image: "/blog.png",
+    desc: "A full-stack blog platform using React, Express.js,MongoDB, and JWT for authentication. Users can create,edit, and delete blog posts securely.",
+    links: [
+      {
+        title: "GitHub",
+        href: "https://github.com/Emaani-gh/nay_writes_frontend",
+      },
+      {
+        title: "Live Demo",
+        href: "https://naywrites.onrender.com/",
+      },
+    ],
+  },
+  {
+    title: "Notes App",
+    image: "/noteApp.png",
+    desc: "A full-stack note-taking application built with React,Express.js, and MySQL. Users can add, update, and delete notes with persistent storage and a clean, responsive interface.",
+    links: [
+      {
+        title: "GitHub",
+        href: "https://github.com/Emaani-gh/note-app",
+      },
+      {
+        title: "Live Demo",
+        href: "https://note-app-gk91.onrender.com/",
+      },
+    ],
+  },
+  {
+    title: "Ecommerce App",
+    image: "/ecommerce.png",
+    desc: "An eCommerce web application built with React and theFakeStore API. It features product listing, detailedviews, and a cart system implemented using React Context for global state management.",
+    links: [
+      {
+        title: "GitHub",
+        href: "https://github.com/Emaani-gh/ecommerce",
+      },
+      {
+        title: "Live Demo",
+        href: "https://ecommerce-0iru.onrender.com/",
+      },
+    ],
+  },
+  {
+    title: "Weather App",
+    image: "/weatherApp2.png",
+    desc: "A React weather app using the OpenWeather API. It shows real-time weather by city or your current location using geolocation..",
+    links: [
+      {
+        title: "GitHub",
+        href: "https://github.com/Emaani-gh/weather-application",
+      },
+      {
+        title: "Live Demo",
+        href: "https://emaani-gh.github.io/weather-application/",
+      },
+    ],
+  },
+];
+
 export default function Home() {
   const [openMenu, setOpenmenu] = useState(false);
   const [darkMode, setDarkMode] = useState(false);
@@ -37,7 +122,7 @@ export default function Home() {
 
   // Email handling
   const handleEmailSubmit = async (e) => {
-    const url = "https://email-api-aewx.onrender.com/send-email";
+    const url = "https://formsubmit.co/ajax/3e8b138bca4d63791befef7b98ccf252";
     e.preventDefault();
     setLoading(true);
 
@@ -61,10 +146,10 @@ export default function Home() {
       if (res.ok) {
         setMessage(true);
         setError("");
-        formElement.reset(); // proper reset
+        formElement.reset();
       } else {
         setError("Something went wrong. Try again.");
-        setMessage(false); // hide success
+        setMessage(false);
       }
     } catch (error) {
       setError("Network error. Please try again.");
@@ -81,7 +166,7 @@ export default function Home() {
   return (
     <div className="">
       <main className={`px-6 font-poppins dark:bg-gray-900`}>
-        {/* ====================================NAV BAR =========================================================================== */}
+        {/* ==================================== NAV BAR =========================================================================== */}
         <nav className=" shadow-md flex justify-between items-center py-6 fixed left-0 px-8 w-full z-50 bg-gray-50 dark:bg-gray-900 dark:text-white">
           {/* ---------LOGO----------------- */}
           <div className="logo">
@@ -148,7 +233,7 @@ export default function Home() {
                   <Link
                     scroll={true}
                     className="text-xl bg-cyan-500 px-4 py-2 rounded-md text-white transition-all duration-300 hover:bg-cyan-600 hover:scale-105 shadow-md hover:shadow-lg"
-                    href="/software_dev_resume.pdf"
+                    href="/lebenslauf_seidu.pdf"
                     target="_blank"
                     onClick={() => setOpenmenu(false)}
                   >
@@ -197,7 +282,7 @@ export default function Home() {
                 <Link
                   scroll={true}
                   className="text-xl bg-cyan-500 px-4 py-2 rounded-md text-white transition-all duration-300 hover:bg-cyan-600 hover:scale-105 shadow-md hover:shadow-lg"
-                  href="/software_dev_resume.pdf"
+                  href="/lebenslauf_seidu.pdf"
                   target="_blank"
                   onClick={() => setOpenmenu(false)}
                 >
@@ -357,7 +442,7 @@ export default function Home() {
               <Tilt className="card flex-1 min-w-[280px] max-w-[320px]  flex flex-col items-center shadow-lg bg-[#f7f7f7] p-2 rounded-lg mb-16 lg:mb-0 dark:bg-white">
                 <div>
                   <img
-                    src="/web-App.png"
+                    src="/web-app.png"
                     className="m-2 w-[64px]"
                     alt="web app icon"
                   />
@@ -398,160 +483,40 @@ export default function Home() {
             </h2>
 
             <div className="projects flex flex-col gap-10 md:flex-row flex-wrap">
-              <div className="bg-[#f7f7f7]  project basis-1/3 flex-1 shadow-lg rounded-lg flex flex-col">
-                <div className="overflow-hidden h-60">
-                  <img
-                    src="/blog.png"
-                    className="rounded-lg"
-                    alt="Screenshot of blog project"
-                  />
-                </div>
-                <div className="p-4 flex justify-end flex-col flex-1">
-                  <div>
-                    <h3 className="text-xl font-semibold text-gray-800  mb-2">
-                      Blogs App
-                    </h3>
-                    <p className="text-gray-600  mb-4">
-                      A full-stack blog platform using React, Express.js,
-                      MongoDB, and JWT for authentication. Users can create,
-                      edit, and delete blog posts securely.
-                    </p>
+              {projects.map((project, index) => (
+                <div
+                  key={index}
+                  className="bg-[#f7f7f7]  project basis-1/3 flex-1 shadow-lg rounded-lg flex flex-col "
+                >
+                  <div className="overflow-hidden h-60">
+                    <img
+                      src={project.image}
+                      className="rounded-lg"
+                      alt={project.title}
+                    />
                   </div>
+                  <div className="p-4 flex justify-end flex-col flex-1">
+                    <div>
+                      <h3 className="text-xl font-semibold text-gray-800  mb-2">
+                        {project.title}
+                      </h3>
+                      <p className="text-gray-600  mb-4">{project.desc}</p>
+                    </div>
 
-                  <div className="flex gap-4">
-                    <a
-                      href="https://github.com/Emaani-gh/nay_writes_frontend"
-                      target="_blank"
-                      className="text-teal-500 hover:underline"
-                    >
-                      GitHub
-                    </a>
-                    <a
-                      href="https://naywrites.onrender.com/"
-                      target="_blank"
-                      className="text-teal-500 hover:underline"
-                    >
-                      Live Demo
-                    </a>
+                    <div className="flex gap-4">
+                      {project.links?.map((link, index) => (
+                        <a
+                          href={link.href}
+                          target="_blank"
+                          className="text-teal-500 hover:underline"
+                        >
+                          {link.title}
+                        </a>
+                      ))}
+                    </div>
                   </div>
                 </div>
-              </div>
-
-              <div className="bg-[#f7f7f7] project basis-1/3 flex-1 shadow-lg rounded-lg flex flex-col">
-                <div className="overflow-hidden h-60">
-                  <img
-                    src="/noteApp.png"
-                    className="rounded-t-lg object-cover h-full w-full"
-                    alt="Screenshot of noteApp project"
-                  />
-                </div>
-                <div className="p-4 flex justify-end flex-col flex-1">
-                  <div>
-                    <h3 className="text-xl font-semibold text-gray-800 mb-2">
-                      Notes App
-                    </h3>
-                    <p className="text-gray-600 mb-4">
-                      A full-stack note-taking application built with React,
-                      Express.js, and MySQL. Users can add, update, and delete
-                      notes with persistent storage and a clean, responsive
-                      interface.
-                    </p>
-                  </div>
-                  <div className="flex gap-4 ">
-                    <a
-                      href="https://github.com/Emaani-gh/note-app"
-                      target="_blank"
-                      className="text-teal-500 hover:underline"
-                    >
-                      GitHub
-                    </a>
-                    <a
-                      href="https://note-app-gk91.onrender.com/"
-                      target="_blank"
-                      className="text-teal-500 hover:underline"
-                    >
-                      Live Demo
-                    </a>
-                  </div>
-                </div>
-              </div>
-
-              <div className="bg-[#f7f7f7] project basis-1/3 flex-1 shadow-lg rounded-lg flex flex-col">
-                <div className="overflow-hidden h-60">
-                  <img
-                    src="/ecommerce.png"
-                    className="rounded-t-lg object-cover h-full w-full"
-                    alt="Screenshot of noteApp project"
-                  />
-                </div>
-                <div className="p-4 flex justify-end flex-col flex-1">
-                  <div>
-                    <h3 className="text-xl font-semibold text-gray-800  mb-2">
-                      Ecommerce App
-                    </h3>
-                    <p className="text-gray-600  mb-4">
-                      An eCommerce web application built with React and the
-                      FakeStore API. It features product listing, detailed
-                      views, and a cart system implemented using React Context
-                      for global state management.
-                    </p>
-                  </div>
-                  <div className="flex gap-4 ">
-                    <a
-                      href="https://github.com/Emaani-gh/ecommerce"
-                      target="_blank"
-                      className="text-teal-500 hover:underline"
-                    >
-                      GitHub
-                    </a>
-                    <a
-                      href="https://ecommerce-0iru.onrender.com/"
-                      target="_blank"
-                      className="text-teal-500 hover:underline"
-                    >
-                      Live Demo
-                    </a>
-                  </div>
-                </div>
-              </div>
-
-              <div className="bg-[#f7f7f7] project basis-1/3 flex-1 shadow-lg rounded-lg flex flex-col">
-                <div className="overflow-hidden h-60">
-                  <img
-                    src="/weatherApp2.png"
-                    className="rounded-t-lg object-cover h-full w-full"
-                    alt="Screenshot of noteApp project"
-                  />
-                </div>
-                <div className="p-4 flex justify-end flex-col flex-1">
-                  <div>
-                    <h3 className="text-xl font-semibold text-gray-800  mb-2">
-                      Ecommerce App
-                    </h3>
-                    <p className="text-gray-600  mb-4">
-                      A React weather app using the OpenWeather API. It shows
-                      real-time weather by city or your current location using
-                      geolocation.
-                    </p>
-                  </div>
-                  <div className="flex gap-4 ">
-                    <a
-                      href="https://github.com/Emaani-gh/weather-application"
-                      target="_blank"
-                      className="text-teal-500 hover:underline"
-                    >
-                      GitHub
-                    </a>
-                    <a
-                      href="https://emaani-gh.github.io/weather-application/"
-                      target="_blank"
-                      className="text-teal-500 hover:underline"
-                    >
-                      Live Demo
-                    </a>
-                  </div>
-                </div>
-              </div>
+              ))}
             </div>
           </div>
         </section>
@@ -577,6 +542,8 @@ export default function Home() {
             </div>
 
             <form
+              // action="https://formsubmit.co/3e8b138bca4d63791befef7b98ccf252"
+              // method="POST"
               onSubmit={handleEmailSubmit}
               className="space-y-6 flex-1 flex flex-col items-center"
             >

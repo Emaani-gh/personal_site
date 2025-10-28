@@ -9,8 +9,12 @@ body {
   margin: 0;
   box-sizing: border-box;
 }
+html {
+  scroll-behavior: smooth;
+}
+
 section {
-  scroll-margin-top: 100px; /* adjust to match or exceed your nav height */
+  scroll-margin-top: 100px;
 }
 
 .section-border {
@@ -44,10 +48,10 @@ section {
 }
 
 main {
-  scroll-snap-type: y proximity;
+  /* scroll-snap-type: y proximity;
   overflow-y: scroll;
   height: 100vh;
-  scroll-behavior: smooth;
+  scroll-behavior: smooth; */
 }
 
 .nav-hero-contain,
