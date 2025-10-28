@@ -506,6 +506,7 @@ export default function Home() {
                     <div className="flex gap-4">
                       {project.links?.map((link, index) => (
                         <a
+                          key={index}
                           href={link.href}
                           target="_blank"
                           className="text-teal-500 hover:underline"
